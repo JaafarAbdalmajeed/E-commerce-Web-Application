@@ -15,6 +15,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Image</th>
+
                             <th>Name</th>
                            
                             <th></th>
@@ -29,6 +31,8 @@
                     ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
+                            <td><a href="<?php echo "img/".$value->image; ?>" target="_blank"><img src="<?php echo "img/".$value->image; ?>" width="50" height="50" alt="Category image"></a></td>
+
                             <td><?php echo $value->name; ?></td>
                             
                             <td>
