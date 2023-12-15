@@ -155,7 +155,7 @@
 						<h3><?php echo $detailProduct['name']?></h3>
 						<h2><?php echo $detailProduct['price']?></h2>
 						<ul class="list">
-							<li><a class="active" href="#"><span><?php echo $category['name']?></span> : Household</a></li>
+							<li><a class="active" href="#"><span><?php echo $category['name']?></span> :<?php echo $category['name']?></a></li>
 							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
 						</ul>
 						<p><?php echo $detailProduct['description']?></p>
