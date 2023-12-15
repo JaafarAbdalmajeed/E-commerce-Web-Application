@@ -50,8 +50,8 @@ class Database
     
         $query = "SELECT * from $table where id = :id";
     
-    $stmt = $this->pdo->prepare($query);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -140,8 +140,22 @@ class Database
         echo "Error: " . $e->getMessage();
     }
 
+    
+
     return $array;
 }
+
+    public function getProduct() {
+
+        $query = "SELECT * from products";
+    
+        $statementProducts = $this->pdo->prepare($query);
+        $statementProducts->execute();
+    
+        $resultsProduct = $statementProducts->fetchAll(PDO::FETCH_ASSOC);
+    
+        return $resultsProduct;
+    }
 
 }
 // Example usage
@@ -165,4 +179,3 @@ $database = new Database('localhost', 'e-commerce', 'root', '');
 // $fileExtension = $database->get_file_extension($file_org_name);
 // echo "File Extension: $fileExtension";
 ?>
-
