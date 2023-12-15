@@ -290,7 +290,7 @@
 				</div>
 				<div class="row">
 					<?php 
-						$productsArray = $database -> getProduct()
+						$productsArray = $database -> getAllProducts()
 					?>
 					<!-- single product -->
 					<?php for($i = 0; $i < count($productsArray); $i++) {?>
@@ -298,7 +298,7 @@
 						<div class="single-product">
 							<img class="img-fluid" src="img/product/p1.jpg" alt="">
 							<div class="product-details">
-								<h6 class="hover-text text-warning-hover" href="single-product.php?productId=<?php echo $productsArray[$i]['id']?>"><?php echo $productsArray[$i]['name']?></h6>
+								<h6  href=""><a class="hover-text text-warning-hover" href="single-product.php?productId=<?php echo $productsArray[$i]['id']?>"><?php echo $productsArray[$i]['name']?></a></h6>
 								<div class="price">
 									<h6><?php echo $productsArray[$i]['price']?></h6>
 									<h6 class="l-through"><?php echo $productsArray[$i]['price_after_sale']?></h6>
