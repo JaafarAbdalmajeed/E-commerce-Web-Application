@@ -126,10 +126,7 @@
 	if(isset($_GET['productId'])){
 		$id = $_GET['productId'];
 	}
-	$detailProduct =  $database -> getSingleProduct($id);
-	
-	echo $detailProduct['name'];
-	
+	$detailProduct =  $database -> getSingleProduct($id);	
 	$category =  $database -> get_info('categories',$detailProduct['category_id']);
 	?>
 
@@ -156,16 +153,14 @@
 						<h2><?php echo $detailProduct['price']?></h2>
 						<ul class="list">
 							<li><a class="active" href="#"><span><?php echo $category['name']?></span> :<?php echo $category['name']?></a></li>
-							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
+							<li><a href="#"><span>Availibility</span> :<?php echo ($detailProduct['stock_quantity'] > 0) ? 'In Stock' : 'Not in stock'; ?></a></li>
 						</ul>
 						<p><?php echo $detailProduct['description']?></p>
 						<div class="product_count">
 							<label for="qty">Quantity:</label>
-							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-							 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-							 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+							<input type="text" name="qty" id="sst" maxlength="<?php echo $detailProduct['stock_quantity']; ?>" value="1" title="Quantity:" class="input-text qty">
+							<button onclick="var result = document.getElementById('sst'); var sst = result.value; var maxQty = <?php echo $detailProduct['stock_quantity']; ?>; if(!isNaN(sst) && sst < maxQty) result.value++; return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 						</div>
 						<div class="card_area d-flex align-items-center">
 							<a class="primary-btn" href="#">Add to Cart</a>
