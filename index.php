@@ -296,7 +296,7 @@
 					<?php for($i = 0; $i < count($productsArray); $i++) {?>
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="img/product/p1.jpg" alt="">
+							<img class="img-fluid" src="admin-panel/img/<?php echo $productsArray[$i]['image']?>" alt="">
 							<div class="product-details">
 								<h6  href=""><a class="hover-text text-warning-hover" href="single-product.php?productId=<?php echo $productsArray[$i]['id']?>"><?php echo $productsArray[$i]['name']?></a></h6>
 								<div class="price">
@@ -686,30 +686,6 @@
 		</div>
 	</section>
 	<!-- End exclusive deal Area -->
-
-	<!-- Start brand Area -->
-	<section class="brand-area section_gap">
-		<div class="container">
-			<div class="row">
-				<a class="col single-img" href="#">
-					<img class="img-fluid d-block mx-auto" src="img/brand/1.png" alt="">
-				</a>
-				<a class="col single-img" href="#">
-					<img class="img-fluid d-block mx-auto" src="img/brand/2.png" alt="">
-				</a>
-				<a class="col single-img" href="#">
-					<img class="img-fluid d-block mx-auto" src="img/brand/3.png" alt="">
-				</a>
-				<a class="col single-img" href="#">
-					<img class="img-fluid d-block mx-auto" src="img/brand/4.png" alt="">
-				</a>
-				<a class="col single-img" href="#">
-					<img class="img-fluid d-block mx-auto" src="img/brand/5.png" alt="">
-				</a>
-			</div>
-		</div>
-	</section>
-	<!-- End brand Area -->
 
 	<!-- Start related-product Area -->
 	<section class="related-product-area section_gap_bottom">
