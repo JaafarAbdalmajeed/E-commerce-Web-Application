@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -126,17 +127,24 @@
                 </div>
                 <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new
                     customer, please proceed to the Billing & Shipping section.</p>
-                <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+          
+               
+
+                    <form class="row contact_form" action="checkoutlog.php" method="post" novalidate="novalidate" >
                     <div class="col-md-6 form-group p_star">
-                        <input type="text" class="form-control" id="name" name="name">
-                        <span class="placeholder" data-placeholder="Username or Email"></span>
+                        <input type="text" class="form-control" id="name" name="email" placeholder="Email">
+                        <!--<span class="placeholder" data-placeholder=" Email"></span>-->
                     </div>
                     <div class="col-md-6 form-group p_star">
-                        <input type="password" class="form-control" id="password" name="password">
-                        <span class="placeholder" data-placeholder="Password"></span>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                       <!-- <span class="placeholder"  data-placeholder="Password"></span>-->
                     </div>
                     <div class="col-md-12 form-group">
-                        <button type="submit" value="submit" class="primary-btn">login</button>
+                        <?php if(isset($_GET['error'])){?>
+                            <p> <?php echo $_GET['error'];?></p>
+                        <?php }
+                            ?>
+                        <button type="submit" value="submit" class="primary-btn" name="submit">login</button>
                         <div class="creat_account">
                             <input type="checkbox" id="f-option" name="selector">
                             <label for="f-option">Remember me</label>
@@ -156,27 +164,27 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <h3>Billing Details</h3>
-                        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                        <form class="row contact_form" action="checkoutsign.php" method="post" novalidate="novalidate">
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="first" name="name">
-                                <span class="placeholder" data-placeholder="First name"></span>
+                                <input type="text" class="form-control" id="first" name="name" placeholder="First name">
+                               <!-- <span class="placeholder" data-placeholder="First name"></span>-->
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="last" name="name">
-                                <span class="placeholder" data-placeholder="Last name"></span>
+                                <input type="text" class="form-control" id="last" name="lname" placeholder="Last name">
+                              <!--  <span class="placeholder" data-placeholder="Last name"></span>-->
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="company" name="company" placeholder="Company name">
+                                <input type="text" class="form-control" id="company" name="email" placeholder="Email Address">
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="number" name="number">
-                                <span class="placeholder" data-placeholder="Phone number"></span>
+                                <input type="text" class="form-control" id="number" name="phone" placeholder="Phone number">
+                               <!-- <span class="placeholder" data-placeholder="Phone number"></span>-->
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="email" name="compemailany">
-                                <span class="placeholder" data-placeholder="Email Address"></span>
+                                <input type="text" class="form-control" id="email" name="password" placeholder="Password">
+                                <!--<span class="placeholder" data-placeholder="Password"></span>-->
                             </div>
-                            <div class="col-md-12 form-group p_star">
+                           <!-- <div class="col-md-12 form-group p_star">
                                 <select class="country_select">
                                     <option value="1">Country</option>
                                     <option value="2">Country</option>
@@ -194,22 +202,22 @@
                             <div class="col-md-12 form-group p_star">
                                 <input type="text" class="form-control" id="city" name="city">
                                 <span class="placeholder" data-placeholder="Town/City"></span>
-                            </div>
+                            </div>-->
+                            <!--
                             <div class="col-md-12 form-group p_star">
                                 <select class="country_select">
                                     <option value="1">District</option>
                                     <option value="2">District</option>
                                     <option value="4">District</option>
                                 </select>
-                            </div>
+                            </div>-->
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
+                                <input type="text" class="form-control" id="zip" name="confirm_password" placeholder="conferm password">
                             </div>
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
-                                    <input type="checkbox" id="f-option2" name="selector">
-                                    <label for="f-option2">Create an account?</label>
-                                </div>
+                                    <button type="submit" value="submit" class="primary-btn" name="create" >create an account</button>
+                         </div>
                             </div>
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
@@ -221,6 +229,7 @@
                             </div>
                         </form>
                     </div>
+                    <!--
                     <div class="col-lg-4">
                         <div class="order_box">
                             <h2>Your Order</h2>
@@ -261,11 +270,12 @@
                             </div>
                             <a class="primary-btn" href="#">Proceed to Paypal</a>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
     </section>
+
     <!--================End Checkout Area =================-->
 
     <!-- start footer Area -->
