@@ -433,7 +433,7 @@ function generateSelect($default = 12) {
 					<?php foreach ($products as $product) { ?>
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
-								<img class="img-fluid" src= 'img/product/Placeholder.png' alt="">
+								<img class="img-fluid" src= '<?php echo $product['image']; ?>' alt="">
 								<div class="product-details">
 									<h6><?php echo $product['name']; ?></h6>
 									<div class="price">
