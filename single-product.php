@@ -1,3 +1,5 @@
+<?php include "includes/connect.php";?>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -118,15 +120,27 @@
 		</div>
 	</section>
 	<!-- End Banner Area -->
+	<?php 
+	
+	$id = '';
+	if(isset($_GET['productId'])){
+		$id = $_GET['productId'];
+	}
+	$detailProduct =  $database -> getSingleProduct($id);
+	
+	echo $detailProduct['name'];
+	
+	$category =  $database -> get_info('categories',$detailProduct['category_id']);
+	?>
 
-	<!--================Single Product Area =================-->
+	<!--================ Single Product Area =================-->
 	<div class="product_image_area">
 		<div class="container">
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
 					<div class="s_Product_carousel">
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+							<img class="img-fluid" src="admin-panel/img/<?php echo $detailProduct['image']?>" alt="">
 						</div>
 						<div class="single-prd-item">
 							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
@@ -138,15 +152,13 @@
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-						<h3>Faded SkyBlu Denim Jeans</h3>
-						<h2>$149.99</h2>
+						<h3><?php echo $detailProduct['name']?></h3>
+						<h2><?php echo $detailProduct['price']?></h2>
 						<ul class="list">
-							<li><a class="active" href="#"><span>Category</span> : Household</a></li>
+							<li><a class="active" href="#"><span><?php echo $category['name']?></span> :<?php echo $category['name']?></a></li>
 							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
 						</ul>
-						<p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for
-							something that can make your interior look awesome, and at the same time give you the pleasant warm feeling
-							during the winter.</p>
+						<p><?php echo $detailProduct['description']?></p>
 						<div class="product_count">
 							<label for="qty">Quantity:</label>
 							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">

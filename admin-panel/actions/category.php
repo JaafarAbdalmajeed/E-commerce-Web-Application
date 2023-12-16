@@ -6,13 +6,18 @@ $name = str_replace("'", "\'", $_POST['name']);
 $user_id =  $_SESSION['user_id'];
 
 $id = isset($_POST['id']) ? $_POST['id'] : null;
+$file_org_name = $_FILES["image"]["name"];
+$file_tmp_name = $_FILES["image"]["tmp_name"];
 
+if($_FILES["image"]["size"] != 0){
+    $image= $database->upload_img($file_org_name, $file_tmp_name);	
+} 
 if (isset($_POST['add'])) {
-    $insertEmployee = "INSERT INTO categories (`name`, `user_id`) VALUES (:name, :user_id)";
+    $insertEmployee = "INSERT INTO categories (`name`, `user_id`, `image`) VALUES (:name, :user_id, :image)";
     try {
         $stmt = $database->pdo->prepare($insertEmployee);
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-       
+        $stmt->bindParam(':image', $image, PDO::PARAM_STR);
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 
         $stmt->execute();
@@ -29,13 +34,16 @@ if (isset($_POST['add'])) {
 // echo $id;
 // die;
     // Update query
-    $updateEmployee = "UPDATE categories SET name = :name, user_id = :user_id WHERE id = :id";
+    $updateEmployee = "UPDATE categories SET name = :name, user_id = :user_id, image = :image WHERE id = :id";
 
     try {
         $stmt = $database->pdo->prepare($updateEmployee);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-       
+        if($_FILES["image"]["size"] != 0){
+
+            $stmt->bindParam(':image', $image, PDO::PARAM_STR);
+            }
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
 
         $stmt->execute();

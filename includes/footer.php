@@ -120,6 +120,13 @@
                                     required>
                             </div>
                         </div>
+                        <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Photo">Image:</label>
+                                    <input type="file" accept="image/*" class="form-control" id="Photo" name="image">
+                                </div>
+                            </div>
+
                        
 
                     </div>
@@ -135,6 +142,95 @@
         </div>
     </div>
 </div>
+<!-- product Modal-->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Product</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form action="actions/product.php" enctype="multipart/form-data" class="modal-form needs-validation"
+                method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="productName">Name:</label>
+                                <input type="text" class="form-control" id="productName" name="name" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Photo">Image:</label>
+                                <input type="file" accept="image/*" class="form-control" id="Photo" name="image">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="categorySelect">Category:</label>
+                                <select class="form-control" id="categorySelect" name="category_id" required>
+                                    <option value="" disabled selected>Select a category</option>
+                                    <?php $categoryRow=$database->getTableList('categories');
+                                    foreach($categoryRow as $categoryValue){
+                                    ?>
+                                    <option value="<?php echo $categoryValue->id?>"><?php echo $categoryValue->name?></option>
+                               
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="stockQuantity">Stock Quantity:</label>
+                                <input type="number" class="form-control" id="stockQuantity" name="stock_quantity" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="productPrice">Price:</label>
+                                <input type="number" step="0.01" class="form-control" id="productPrice" name="price" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="priceAfterSale">Price After Sale:</label>
+                                <input type="number" step="0.01" class="form-control" id="priceAfterSale" name="price_after_sale">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="productDescription">Description:</label>
+                                <textarea class="form-control" id="productDescription" name="description"></textarea>
+                            </div>
+                        </div>
+                      
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="isOnSale" name="is_on_sale">
+                                    <label class="form-check-label" for="isOnSale">Is on Sale</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="primaryId" class="primaryId" value="">
+                    <input type="hidden" class="table_name" name="table_name">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary modal-submit">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- experience Modal-->
 <div class="modal fade" id="experienceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
