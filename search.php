@@ -130,15 +130,16 @@
                         </thead>
                         <tbody>
                         <?php 
-                            $id = '';
+                            $input = '';
                             if(isset($_POST['idSearch'])){
-                                $id = $_POST['idSearch'];
+                                
+                                $input=$_POST['idSearch'];
                             }
                             
-                            $productsArray = $database->getAllProducts();
+                            $productsArray = $database->searchProduct($input);
                             
                             for($i = 0; $i < count($productsArray); $i++) {
-                                if($id == $productsArray[$i]['name']) {
+                                
                         ?>
                                 
                             <tr>
@@ -179,9 +180,6 @@
                                 }
                             </script>
                             <?php  
-                            } else {
-                                echo '<h5>Not Found</h5>';
-                        }
                     }?>
                         </tbody>
                     </table>

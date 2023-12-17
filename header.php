@@ -59,7 +59,7 @@
 		</div>
 		<div class="search_input" id="search_input_box">
 			<div class="container">
-				<form class="d-flex justify-content-between"   method="post" action ="">
+				<form class="d-flex justify-content-between"   method="post" action ="search.php">
 					<input type="text" name="idSearch" class="form-control" id="search_input" placeholder="Search Here">
 					<button type="submit" class="btn"></button>
 					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
