@@ -157,6 +157,18 @@ class Database
         return $resultsProduct;
     }
 
+    public function searchProduct($paint) {
+
+        $query = "SELECT * FROM products WHERE name LIKE '%$paint%';";
+    
+        $statementSearch = $this->pdo->prepare($query);
+        $statementSearch->execute();
+    
+        $resultsSearch = $statementSearch->fetchAll(PDO::FETCH_ASSOC);
+    
+        return $resultsSearch;
+    }
+
     public function getSingleProduct($productId) {
     
         $query = "SELECT * from products where id = :id";
