@@ -33,7 +33,7 @@
 
 <body>
 
-    
+<?php include 'header.php'?>
 
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
