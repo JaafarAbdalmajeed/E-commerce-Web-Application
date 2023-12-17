@@ -127,7 +127,7 @@
 		$id = $_GET['productId'];
 	}
 	$detailProduct =  $database -> getSingleProduct($id);	
-	$category =  $database -> get_info('categories',$detailProduct['category_id']);
+	$category =  $database -> getSingleCategory($detailProduct['category_id']);
 	?>
 
 	<!--================ Single Product Area =================-->
