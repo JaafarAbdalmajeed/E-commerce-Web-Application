@@ -36,8 +36,7 @@
 
 <body>
 
-	<?php include 'header.php'?>
-
+<?php include 'header.php'?>
 	<!-- start banner Area -->
 	<section class="banner-area">
 		<div class="container">

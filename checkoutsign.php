@@ -16,12 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $phone = trim($_POST['phone']);
+    $address=trim($_POST['address']);
     $password = trim($_POST['password']);
+    
     $confirm_password = trim($_POST['confirm_password']);
 
    
     if ($password !== $confirm_password) {
-        header("Location: signup.php?error=Passwords do not match");
+        header("Location: checkout.php?error=Passwords do not match");
         exit();
     }
 
@@ -32,14 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $existingUser = $checkStmt->fetchColumn();
 
     if ($existingUser) {
-        header("Location: signup.php?error=Email is already registered");
+        header("Location: checkout.php?error=Email is already registered");
         exit();
     }
 
     
-    $insertQuery = "INSERT INTO customers (name, email, phone, password) VALUES (?, ?, ?, ?)";
+    $insertQuery = "INSERT INTO customers (name, email, phone, password, address) VALUES (?, ?, ?, ?, ?)";
     $insertStmt = $pdo->prepare($insertQuery);
-    $insertStmt->execute([$name, $email, $phone, $password]);
+    $insertStmt->execute([$name, $email, $phone, $password,$address]);
 
     // Redirect to a success page or login page
     header("Location: confirmation.php");

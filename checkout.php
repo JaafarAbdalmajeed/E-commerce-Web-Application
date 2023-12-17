@@ -136,20 +136,25 @@
                                 <input type="text" class="form-control" id="city" name="city">
                                 <span class="placeholder" data-placeholder="Town/City"></span>
                             </div>-->
-                            <!--
+                            
                             <div class="col-md-12 form-group p_star">
-                                <select class="country_select">
-                                    <option value="1">District</option>
-                                    <option value="2">District</option>
-                                    <option value="4">District</option>
+                                <select class="country_select"name="address" >
+                                    <option value="Amman" >Amman</option>
+                                    <option value="Aqapa" >Aqapa</option>
+                                    <option value="Ajlon" >Jordan</option>
                                 </select>
-                            </div>-->
+                            </div>
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="zip" name="confirm_password" placeholder="conferm password">
                             </div>
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
+                                <?php if(isset($_GET['error'])){?>
+                            <p> <?php echo $_GET['error'];?></p>
+                        <?php }
+                            ?>
                                     <button type="submit" value="submit" class="primary-btn" name="create" >create an account</button>
+                                   
                          </div>
                             </div>
                             <div class="col-md-12 form-group">
