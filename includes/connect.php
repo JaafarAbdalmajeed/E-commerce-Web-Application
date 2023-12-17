@@ -52,12 +52,12 @@ class Database
     
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-    
+        
+       
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
         return $row;
     }
+    
     public function check_existance($sql) {
     
         try {

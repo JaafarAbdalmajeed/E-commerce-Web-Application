@@ -1,11 +1,13 @@
 <?php include('../includes/header.php');
-$row = $database->get_info('user_meta_tags', $_SESSION['user_id']);
-// echo 'user'.$row['user_id'];
-if($row['user_id'] != ''){
+$row = $database->get_record('select * from user_meta_tags');
+if(isset($row['user_id']) && $row['user_id'] != ''){
     $name='update';
 }else{
     $name='add';
 }
+
+// var_dump($row);
+
 ?>
 
 <!-- Begin Page Content -->
