@@ -95,8 +95,8 @@
 		</div>
 		<div class="search_input" id="search_input_box">
 			<div class="container">
-				<form class="d-flex justify-content-between">
-					<input type="text" class="form-control" id="search_input" placeholder="Search Here">
+				<form class="d-flex justify-content-between"   method="post" action ="">
+					<input type="text" name="idSearch" class="form-control" id="search_input" placeholder="Search Here">
 					<button type="submit" class="btn"></button>
 					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
 				</form>
@@ -290,7 +290,7 @@
 				</div>
 				<div class="row">
 					<?php 
-						$productsArray = $database -> getAllProducts()
+						$productsArray = $database -> getAllProducts();
 					?>
 					<!-- single product -->
 					<?php for($i = 0; $i < count($productsArray); $i++) {?>
