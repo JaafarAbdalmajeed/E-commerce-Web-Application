@@ -1,3 +1,4 @@
+<?php include('includes/connect.php'); ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 

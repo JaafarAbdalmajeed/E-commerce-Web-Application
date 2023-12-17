@@ -1,4 +1,11 @@
 <!-- Start Header Area -->
+<style>
+	 #cart-badge {
+    font-size: 10px; /* Adjust the font size as needed */
+    border-radius: 50%; /* Makes it rounded */
+    padding: 5px 8px; /* Optional: Add padding for better appearance */
+  }
+</style>
 <header class="header_area sticky-header">
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
@@ -48,7 +55,7 @@
 							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="cart.html" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item"><a href="cart.php" class="cart"><span class="ti-bag"></span><span id="cart-badge" class="badge badge-sm badge-pill badge-warning">0</span></a></li>
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 							</li>
