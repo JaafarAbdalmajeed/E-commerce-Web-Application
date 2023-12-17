@@ -1,3 +1,69 @@
+<?php
+	function getOrederDetails($order_id) {
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$database = "e-commerce";
+
+		try {
+			$conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+			$query = "SELECT * FROM orders WHERE id = :id";
+			$stmt = $conn->prepare($query);
+			$stmt->bindParam(':id', $order_id, PDO::PARAM_INT);
+			$stmt->execute();
+			$order_details = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$stmt->closeCursor();
+			return $order_details;
+		} catch (PDOException $e) {
+			echo "Connection failed: " . $e->getMessage();
+			return null; 
+		} finally {
+			$conn = null; 
+		}
+	}
+
+	// remove this, and make checkout send $_POST['Order_ID']
+	$_POST['Order_ID'] = 1;
+	if(isset($_POST['Order_ID'])){
+		$order_id = $_POST['Order_ID'];
+		$order_details = getOrederDetails($order_id);
+	}
+	else{
+		header("Location: index.html");
+	}
+
+	function getProduct($product_id) {
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$database = "e-commerce";
+
+		try {
+			$conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+			$query = "SELECT * FROM products WHERE id = :id";
+			$stmt = $conn->prepare($query);
+			$stmt->bindParam(':id', $product_id, PDO::PARAM_INT);
+			$stmt->execute();
+			$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$stmt->closeCursor();
+			
+			return $products;
+		} catch (PDOException $e) {
+			echo "Connection failed: " . $e->getMessage();
+			return null; 
+		} finally {
+			$conn = null; 
+		}
+	}
+		
+
+?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -38,7 +104,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+					<a class="navbar-brand logo_h" href="index.php"><img src="img/logo.png" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -48,19 +114,20 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-							<li class="nav-item submenu dropdown active">
+							<li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+							<li class="nav-item active"><a class="nav-link" href="category.php">Shop </a></li>
+
+							<!-- <li class="nav-item submenu dropdown active">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
 									<li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
 									<li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
 									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-									<li class="nav-item active"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+									<li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
 								</ul>
-							</li>
-							<li class="nav-item submenu dropdown">
+							</li> -->
+							<!-- <li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Blog</a>
 								<ul class="dropdown-menu">
@@ -76,11 +143,11 @@
 									<li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
 									<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
 								</ul>
-							</li>
+							</li> -->
 							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item"><a href="cart.html" class="cart"><span class="ti-bag"></span></a></li>
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 							</li>
@@ -100,7 +167,7 @@
 		</div>
 	</header>
 	<!-- End Header Area -->
-
+	
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
 		<div class="container">
@@ -108,8 +175,8 @@
 				<div class="col-first">
 					<h1>Confirmation</h1>
 					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">Confirmation</a>
+						<a href="index.php">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="category.php">Confirmation</a>
 					</nav>
 				</div>
 			</div>
@@ -121,53 +188,51 @@
 	<section class="order_details section_gap">
 		<div class="container">
 			<h3 class="title_confirmation">Thank you. Your order has been received.</h3>
-			<div class="row order_d_inner">
-				<div class="col-lg-4">
-					<div class="details_item">
-						<h4>Order Info</h4>
-						<ul class="list">
-							<li><a href="#"><span>Order number</span> : 60235</a></li>
-							<li><a href="#"><span>Date</span> : Los Angeles</a></li>
-							<li><a href="#"><span>Total</span> : USD 2210</a></li>
-							<li><a href="#"><span>Payment method</span> : Check payments</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="details_item">
-						<h4>Billing Address</h4>
-						<ul class="list">
-							<li><a href="#"><span>Street</span> : 56/8</a></li>
-							<li><a href="#"><span>City</span> : Los Angeles</a></li>
-							<li><a href="#"><span>Country</span> : United States</a></li>
-							<li><a href="#"><span>Postcode </span> : 36952</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="details_item">
-						<h4>Shipping Address</h4>
-						<ul class="list">
-							<li><a href="#"><span>Street</span> : 56/8</a></li>
-							<li><a href="#"><span>City</span> : Los Angeles</a></li>
-							<li><a href="#"><span>Country</span> : United States</a></li>
-							<li><a href="#"><span>Postcode </span> : 36952</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
+			
 			<div class="order_details_table">
-				<h2>Order Details</h2>
+				<h4>Order Details</h4>
+				<h4>Order ID: # <?php echo $order_details[0]['id']; ?></h4>
+				<h4>Order Date: <?php echo $order_details[0]['order_date']; ?></h4>
+				<br>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
 							<tr>
-								<th scope="col">Product</th>
-								<th scope="col">Quantity</th>
-								<th scope="col">Total</th>
+								<th scope="col" ><h5>Product</h5></th>
+								<th scope="col"><h5>Quantity</h5></th>
+								<th scope="col"><h5>Price</h5></th>
 							</tr>
 						</thead>
 						<tbody>
+							<?php 
+								$quant_array = explode(",",$order_details[0]['products_quantity']);
+								$count = 0; $sum = 0;
+								foreach ($product_array as $product_id) { 
+									
+									$product = getProduct($product_id)[0];
+							?>
+								<tr>
+									<td>
+										<p><?php echo $product['name']; ?></p>
+									</td>
+									<td>
+										<h5><?php 
+											if($quant_array[$count]!=1){
+												echo "x " . $quant_array[$count];
+												
+											}
+											$sum += $quant_array[$count] * $product['price'];
+											
+										?></h5>
+									</td>
+									<td>
+										<p><?php echo $quant_array[$count] * $product['price']; ?></p>
+									</td>
+								</tr>
+							<?php $count += 1; } ?>
+
+						
+							<!-- 	
 							<tr>
 								<td>
 									<p>Pixelstore fresh Blackberry</p>
@@ -189,18 +254,7 @@
 								<td>
 									<p>$720.00</p>
 								</td>
-							</tr>
-							<tr>
-								<td>
-									<p>Pixelstore fresh Blackberry</p>
-								</td>
-								<td>
-									<h5>x 02</h5>
-								</td>
-								<td>
-									<p>$720.00</p>
-								</td>
-							</tr>
+							</tr> -->
 							<tr>
 								<td>
 									<h4>Subtotal</h4>
@@ -209,7 +263,7 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p>$2160.00</p>
+									<p><?php echo '$' . $sum ?></p>
 								</td>
 							</tr>
 							<tr>
@@ -220,7 +274,7 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p>Flat rate: $50.00</p>
+									<p><?php echo '$' . $order_details[0]['shipping'] ?></p>
 								</td>
 							</tr>
 							<tr>
@@ -231,7 +285,7 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p>$2210.00</p>
+									<p><?php echo '$' . $sum+$order_details[0]['shipping'] ?></p>
 								</td>
 							</tr>
 						</tbody>

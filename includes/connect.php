@@ -52,12 +52,12 @@ class Database
     
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-    
+        
+       
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
         return $row;
     }
+    
     public function check_existance($sql) {
     
         try {
@@ -170,7 +170,18 @@ class Database
         return $row;
     }
 
+    public function getSingleCategory($productId) {
     
+        $query = "SELECT * from categories where id = :id";
+    
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':id', $productId, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        return $row;
+    }
 
     
 

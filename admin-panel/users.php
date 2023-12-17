@@ -42,9 +42,9 @@
                                 <button type="button" id="<?php echo $value->id;?>" table="users" data-toggle="modal"
                                     data-target="#userModal" class="btn btn-icon btn-success update_ edit-click"><i
                                         class="fas fa-edit"></i></button>
-                                <button data-toggle="modal" data-target="#modal-delete-record" type="button"
+                                <button data-toggle="modal" data-target="#modal-delete" type="button"
                                     id="<?php echo $value->id;?>" table="users"
-                                    class="del_click remove_record delete-privilege btn btn-icon btn-danger"><i
+                                    class="delete-click remove_record delete-privilege btn btn-icon btn-danger"><i
                                         class="fas fa-trash"></i></button>
                             </td>
                         </tr>
@@ -61,7 +61,7 @@
 <script type="text/javascript">
     $(document).on('click', '.edit-click', function () {
         var id = $(this).attr("id");
-        // alert(id);
+        // 
         $.ajax({
             url: "../includes/fetch_records.php",
             method: "POST",

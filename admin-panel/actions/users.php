@@ -21,7 +21,7 @@ if (isset($_POST['add'])) {
 
         $stmt->execute();
 
-        echo "Employee added successfully!";
+        echo "Added successfully!";
         $_SESSION['success_add'] = 1;
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -44,7 +44,7 @@ if (isset($_POST['add'])) {
 
         $stmt->execute();
 
-        echo "Employee updated successfully!";
+        echo "Updated successfully!";
         $_SESSION['success_update'] = 1;
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();

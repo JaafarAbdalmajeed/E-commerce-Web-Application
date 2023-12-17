@@ -1,3 +1,4 @@
+<?php include 'includes/connect.php'?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -49,14 +50,14 @@
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-							<li class="nav-item submenu dropdown">
+							<li class="nav-item submenu dropdown active">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
 									<li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
 									<li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+									<li class="nav-item active"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
 									<li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
 								</ul>
 							</li>
@@ -68,12 +69,12 @@
 									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
 								</ul>
 							</li>
-							<li class="nav-item submenu dropdown active">
+							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Pages</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-									<li class="nav-item active"><a class="nav-link" href="tracking.html">Tracking</a></li>
+									<li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
 									<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
 								</ul>
 							</li>
@@ -106,38 +107,89 @@
         <div class="container">
             <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                 <div class="col-first">
-                    <h1>Order Tracking</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="category.html">Fashon Category</a>
-                    </nav>
+                    
                 </div>
             </div>
         </div>
     </section>
     <!-- End Banner Area -->
 
-    <!--================Tracking Box Area =================-->
-    <section class="tracking_box_area section_gap">
+    <!--================Cart Area =================-->
+    <section class="cart_area">
         <div class="container">
-            <div class="tracking_box_inner">
-                <p>To track your order please enter your Order ID in the box below and press the "Track" button. This
-                    was given to you on your receipt and in the confirmation email you should have received.</p>
-                <form class="row tracking_form" action="#" method="post" novalidate="novalidate">
-                    <div class="col-md-12 form-group">
-                        <input type="text" class="form-control" id="order" name="order" placeholder="Order ID" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Order ID'">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Billing Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Billing Email Address'">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <button type="submit" value="submit" class="primary-btn">Track Order</button>
-                    </div>
-                </form>
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                            $id = '';
+                            if(isset($_POST['idSearch'])){
+                                $id = $_POST['idSearch'];
+                            }
+                            
+                            $productsArray = $database->getAllProducts();
+                            
+                            for($i = 0; $i < count($productsArray); $i++) {
+                                if($id == $productsArray[$i]['name']) {
+                        ?>
+                                
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="admin-panel/img/<?php $productsArray[$i]['image']?>" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <p><?php echo  $productsArray[$i]['name'];?></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5><?php echo $productsArray[$i]['price']?></h5>
+                                </td>
+                                <td>
+                                    <div class="product_count">
+                                        <input type="text" maxlength="<?php echo $productsArray[$i]['stock_quantity']; ?>" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                            class="input-text qty">
+                                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; var maxQty = <?php echo $productsArray[$i]['stock_quantity']; ?>; if(!isNaN(sst) && sst < maxQty) result.value++; return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+
+                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                    </div>
+                                </td>
+                                <td>
+                                <h5 id="totalPrice"><?php echo $productsArray[$i]['price']; ?></h5>
+                                </td>
+                            </tr>
+
+                            <script>
+                                function calculateTotal() {
+                                    quantity = document.getElementById('sst').value;
+                                    price = <?php echo $productsArray[$i]['price']; ?>;
+                                    total = quantity * price;
+                                    document.getElementById('totalPrice').innerText = total;
+                                }
+                            </script>
+                            <?php  
+                            } else {
+                                echo '<h5>Not Found</h5>';
+                        }
+                    }?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
-    <!--================End Tracking Box Area =================-->
+    <!--================End Cart Area =================-->
 
     <!-- start footer Area -->
     <footer class="footer-area section_gap">
@@ -221,9 +273,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- End footer Area -->
-
-
-
 
     <script src="js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

@@ -36,75 +36,7 @@
 
 <body>
 
-	<!-- Start Header Area -->
-	<header class="header_area sticky-header">
-		<div class="main_menu">
-			<nav class="navbar navbar-expand-lg navbar-light main_box">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Shop</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-									<li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-									<li class="nav-item"><a class="nav-link" href="checkout.php">Product Checkout</a></li>
-									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-									<li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-								</ul>
-							</li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Blog</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-								</ul>
-							</li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Pages</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-									<li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
-									<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-								</ul>
-							</li>
-							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-							<li class="nav-item">
-								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-		<div class="search_input" id="search_input_box">
-			<div class="container">
-				<form class="d-flex justify-content-between">
-					<input type="text" class="form-control" id="search_input" placeholder="Search Here">
-					<button type="submit" class="btn"></button>
-					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-				</form>
-			</div>
-		</div>
-	</header>
-	<!-- End Header Area -->
-
+<?php include 'header.php'?>
 	<!-- start banner Area -->
 	<section class="banner-area">
 		<div class="container">
@@ -209,12 +141,22 @@
 	<section class="category-area">
 		<div class="container">
 			<div class="row justify-content-center">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="">
+							<h1 onclick="displayCategory(0)" style="cursor:pointer;">Shop by Category</h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+								dolore
+								magna aliqua.</p><br>
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-8 col-md-12">
 					<div class="row">
 						<div class="col-lg-8 col-md-8">
 							<div class="single-deal">
-								<div class="overlay"></div>
-								<img class="img-fluid w-100" src="img/category/c1.jpg" alt="">
+								<div class="overlay" onclick="displayCategory(1)" style="cursor:pointer;"></div>
+								<img class="img-fluid w-100" src="img/category/c1.jpg" alt="" >
 								<a href="img/category/c1.jpg" class="img-pop-up" target="_blank">
 									<div class="deal-details">
 										<h6 class="deal-title">Sneaker for Sports</h6>
@@ -224,8 +166,8 @@
 						</div>
 						<div class="col-lg-4 col-md-4">
 							<div class="single-deal">
-								<div class="overlay"></div>
-								<img class="img-fluid w-100" src="img/category/c2.jpg" alt="">
+								<div class="overlay" onclick="displayCategory(2)" style="cursor:pointer;"></div>
+								<img class="img-fluid w-100" src="img/category/c2.jpg" alt="" >
 								<a href="img/category/c2.jpg" class="img-pop-up" target="_blank">
 									<div class="deal-details">
 										<h6 class="deal-title">Sneaker for Sports</h6>
@@ -235,7 +177,7 @@
 						</div>
 						<div class="col-lg-4 col-md-4">
 							<div class="single-deal">
-								<div class="overlay"></div>
+								<div class="overlay" onclick="displayCategory(3)" style="cursor:pointer;"></div>
 								<img class="img-fluid w-100" src="img/category/c3.jpg" alt="">
 								<a href="img/category/c3.jpg" class="img-pop-up" target="_blank">
 									<div class="deal-details">
@@ -246,8 +188,8 @@
 						</div>
 						<div class="col-lg-8 col-md-8">
 							<div class="single-deal">
-								<div class="overlay"></div>
-								<img class="img-fluid w-100" src="img/category/c4.jpg" alt="">
+								<div class="overlay" onclick="displayCategory(4)" style="cursor:pointer;"></div>
+								<img class="img-fluid w-100" src="img/category/c4.jpg" alt="" >
 								<a href="img/category/c4.jpg" class="img-pop-up" target="_blank">
 									<div class="deal-details">
 										<h6 class="deal-title">Sneaker for Sports</h6>
@@ -259,7 +201,7 @@
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="single-deal">
-						<div class="overlay"></div>
+						<div class="overlay" onclick="displayCategory(5)" style="cursor:pointer;"></div>
 						<img class="img-fluid w-100" src="img/category/c5.jpg" alt="">
 						<a href="img/category/c5.jpg" class="img-pop-up" target="_blank">
 							<div class="deal-details">
@@ -270,6 +212,11 @@
 				</div>
 			</div>
 		</div>
+		<script> 
+			function displayCategory(categoryId, showCount = 12, page = 1) {
+				window.location.href = 'category.php?id=' + categoryId + '&showcount=' + showCount + '&page=' + page;
+			}
+		</script>
 	</section>
 	<!-- End category Area -->
 
@@ -290,7 +237,7 @@
 				</div>
 				<div class="row">
 					<?php 
-						$productsArray = $database -> getAllProducts()
+						$productsArray = $database -> getAllProducts();
 					?>
 					<!-- single product -->
 					<?php for($i = 0; $i < count($productsArray); $i++) {?>

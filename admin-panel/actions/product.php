@@ -51,11 +51,20 @@ if (isset($_POST['add'])) {
 
     // Update query
     $updateProduct = "UPDATE products 
-                      SET name = :name, user_id = :user_id, image = :image, 
+                      SET name = :name, user_id = :user_id, 
                           stock_quantity = :stock_quantity, price = :price, 
                           price_after_sale = :price_after_sale, description = :description, 
                           is_on_sale = :is_on_sale, category_id = :category_id 
                       WHERE id = :id";
+                       if($_FILES["image"]["size"] != 0){
+                        $image= $database->upload_img($file_org_name, $file_tmp_name);	
+                        $updateProduct = "UPDATE products 
+                        SET name = :name, user_id = :user_id, image = :image, 
+                            stock_quantity = :stock_quantity, price = :price, 
+                            price_after_sale = :price_after_sale, description = :description, 
+                            is_on_sale = :is_on_sale, category_id = :category_id 
+                        WHERE id = :id";                
+                    }
 
     try {
         $stmt = $database->pdo->prepare($updateProduct);
