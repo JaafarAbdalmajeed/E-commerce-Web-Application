@@ -231,112 +231,28 @@
     </div>
 </div>
 
-<!-- experience Modal-->
-<div class="modal fade" id="experienceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <form action="actions/experience.php" enctype="multipart/form-data" class="modal-form needs-validation"
-                method="post">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="experienceName">Job title:</label>
-                                <input type="text" class="form-control" id="experienceJobTitle" name="job"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="experienceEmployer">Employer:</label>
-                                <input type="text" class="form-control" id="experienceEmployer" name="employer"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="experienceStart">Start date:</label>
-                                <input type="date" class="form-control" id="experienceStart"
-                                    name="start_date" required>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="experienceEnd">End date:</label>
-                                <input type="date" class="form-control" id="experienceEnd"
-                                    name="end_date" >
-                            </div>
-                        </div>
 
-                    </div>
+<div class="modal fade" id="modal-delete" role="dialog">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
                 </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="primaryId" class="primaryId" value="">
+                <div class="modal-body"> Are You Sure ? </div>
+                <form action="actions/delete.php" method="post">
+                    <div class="modal-footer">
                     <input type="hidden" class="table_name" name="table_name">
-
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary modal-submit">Add</button>
-                </div>
-            </form>
+                        <input type="hidden" id="ids" name="id" value="">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">No</button>
+                        <input value="Yes" name="delete" type="submit"
+                            class="modal-submit btn btn-danger">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<!-- projects Modal-->
-<div class="modal fade" id="projectsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <form action="actions/projects.php" enctype="multipart/form-data" class="modal-form needs-validation"
-                method="post">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="projectsName">Project Title:</label>
-                                <input type="text" class="form-control" id="projectsTitle" name="name"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="projectsDescription">Description:</label>
-                                <textarea type="text" class="form-control" id="projectsDescription" name="description"
-                                    required></textarea>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="Photo">Photo:</label>
-                                    <input type="file" accept="image/*" class="form-control" id="Photo" name="image">
-                                </div>
-                            </div>
 
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="primaryId" class="primaryId" value="">
-                    <input type="hidden" class="table_name" name="table_name">
 
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary modal-submit">Add</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 <!-- Bootstrap core JavaScript-->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -384,26 +300,7 @@
         $('.modal-header').html("Delete");
         $('.modal-submit').attr('name', 'delete');
     });
-    let count = 1;
-
-    $('#add_skills').click(function () {
-        count++;
-        var a = '<div id="skills' + count + '" class="row">' + '<div class="col-md-6" >' + document
-            .getElementById("about_skills").innerHTML + '</div>';
-
-        var b = '<div class="col-md-2">' + '<div class="form-group" >' +
-            '<button type="button" id ="' + count +
-            '" class="btn btn_remove_skills btn-icon btn-danger has-ripple" > <i class="fas fa-minus" > </i><span class="ripple ripple-animate"></span > </button></div > </div>' +
-            '</div > ';
-        $('#add_skillsInfo').append(a + b);
-
-
-    });
-
-    $(document).on('click', '.btn_remove_skills', function () {
-        var button_id = $(this).attr("id");
-        $('#skills' + button_id).remove();
-    });
+   
 </script>
 <script>
     $(function () {
