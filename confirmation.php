@@ -205,6 +205,7 @@
 						</thead>
 						<tbody>
 							<?php 
+								$product_array = explode(",",$order_details[0]['products_id']);
 								$quant_array = explode(",",$order_details[0]['products_quantity']);
 								$count = 0; $sum = 0;
 								foreach ($product_array as $product_id) { 
