@@ -6,7 +6,7 @@ if(isset($row['user_id']) && $row['user_id'] != ''){
     $name='add';
 }
 
-// var_dump($row);
+var_dump($row);
 
 ?>
 
@@ -47,49 +47,94 @@ if(isset($row['user_id']) && $row['user_id'] != ''){
                             <div class="form-group">
                                 <label for="websiteTitle">Website Title:</label>
                                 <input type="text" class="form-control" id="websiteTitle" name="title" readonly
-                                    value="<?php echo $row['title']; ?>">
+                                    value="<?php
+if (empty($row['title'])) {
+    echo "";
+} else {
+    echo $row['title'];
+}
+?>
+">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="author">Author:</label>
                                 <input type="text" class="form-control" id="author" name="author" readonly
-                                    value="<?php echo $row['author']; ?>">
+                                    value="<?php
+if (empty($row['author'])) {
+    echo "";
+} else {
+    echo $row['author'];
+}
+?>
+">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="profession">Profession:</label>
                                 <input type="text" class="form-control" id="profession" name="profession" readonly
-                                    value="<?php echo $row['profession']; ?>">
+                                    value="<?php
+if (empty($row['profession'])) {
+    echo "";
+} else {
+    echo $row['profession'];
+}
+?>
+">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="twitter">Twitter:</label>
                                 <input type="text" class="form-control" id="twitter" name="twitter" readonly
-                                    value="<?php echo $row['twitter']; ?>">
+                                    value="<?php
+if (empty($row['twitter'])) {
+    echo "";
+} else {
+    echo $row['twitter'];
+}
+?>">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="linkedin">Linkedin:</label>
                                 <input type="text" class="form-control" id="linkedin" name="linkedin" readonly
-                                    value="<?php echo $row['linkedin']; ?>">
+                                    value="<?php
+if (empty($row['linkedin'])) {
+    echo "";
+} else {
+    echo $row['linkedin'];
+}
+?>">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="email">Email:</label>
                                 <input type="email" class="form-control" id="email" name="email" readonly
-                                    value="<?php echo $row['email']; ?>">
+                                    value="<?php
+if (empty($row['email'])) {
+    echo "";
+} else {
+    echo $row['email'];
+}
+?>">
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="tags">Tags:</label>
                                 <input type="text" class="form-control" id="tags" name="tags" readonly
-                                    value="<?php echo $row['tags']; ?>" placeholder="Enter tags, e.g., tag1, tag2, tag3">
+                                    value="<?php
+if (empty($row['tags'])) {
+    echo "";
+} else {
+    echo $row['tags'];
+}
+?>" placeholder="Enter tags, e.g., tag1, tag2, tag3">
                             </div>
                         </div>
 
@@ -97,14 +142,26 @@ if(isset($row['user_id']) && $row['user_id'] != ''){
                             <div class="form-group">
                                 <label for="keywords">Keywords:</label>
                                 <input type="text" class="form-control" id="keywords" name="keywords" readonly
-                                    value="<?php echo $row['keywords']; ?>"
+                                    value="<?php
+if (empty($row['keywords'])) {
+    echo "";
+} else {
+    echo $row['keywords'];
+}
+?>"
                                     placeholder="Enter keywords, e.g., keyword1, keyword2, keyword3">
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="description">Description:</label>
-                                <textarea type="text" class="form-control" id="description" name="description" readonly><?php echo $row['description']; ?> </textarea>
+                                <textarea type="text" class="form-control" id="description" name="description" readonly><?php
+if (empty($row['description'])) {
+    echo "";
+} else {
+    echo $row['description'];
+}
+?> </textarea>
                             </div>
                         </div>
 
@@ -121,49 +178,91 @@ if(isset($row['user_id']) && $row['user_id'] != ''){
                                 <div class="form-group">
                                     <label for="websiteTitle">Website Title:</label>
                                     <input type="text" class="form-control" id="websiteTitle" name="title"
-                                        value="<?php echo $row['title']; ?>">
+                                        value="<?php
+if (empty($row['title'])) {
+    echo "";
+} else {
+    echo $row['title'];
+}
+?>">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="author">Author:</label>
                                     <input type="text" class="form-control" id="author" name="author"
-                                        value="<?php echo $row['author']; ?>">
+                                        value="<?php
+if (empty($row['author'])) {
+    echo "";
+} else {
+    echo $row['author'];
+}
+?>">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="profession">Profession:</label>
                                     <input type="text" class="form-control" id="profession" name="profession"
-                                        value="<?php echo $row['profession']; ?>">
+                                        value="<?php
+if (empty($row['profession'])) {
+    echo "";
+} else {
+    echo $row['profession'];
+}
+?>">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="twitter">Twitter:</label>
                                     <input type="text" class="form-control" id="twitter" name="twitter"
-                                        value="<?php echo $row['twitter']; ?>">
+                                        value="<?php
+if (empty($row['twitter'])) {
+    echo "";
+} else {
+    echo $row['twitter'];
+}
+?>">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="linkedin">Linkedin:</label>
                                     <input type="text" class="form-control" id="linkedin" name="linkedin"
-                                        value="<?php echo $row['linkedin']; ?>">
+                                        value="<?php
+if (empty($row['linkedin'])) {
+    echo "";
+} else {
+    echo $row['linkedin'];
+}
+?>">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="email">Email:</label>
                                     <input type="email" class="form-control" id="email" name="email"
-                                        value="<?php echo $row['email']; ?>">
+                                        value="<?php
+if (empty($row['email'])) {
+    echo "";
+} else {
+    echo $row['email'];
+}
+?>">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="tags">Tags:</label>
                                     <input type="text" class="form-control" id="tags" name="tags"
-                                        value="<?php echo $row['tags']; ?>"
+                                        value="<?php
+if (empty($row['tags'])) {
+    echo "";
+} else {
+    echo $row['tags'];
+}
+?>"
                                         placeholder="Enter tags, e.g., tag1, tag2, tag3" data-toggle="tooltip"
                                         data-placement="top"
                                         title="Enter descriptive tags that represent the main topics or categories of your content. Separate tags with commas. Example: Web Design, Responsive, JavaScript">
@@ -174,7 +273,13 @@ if(isset($row['user_id']) && $row['user_id'] != ''){
                                 <div class="form-group">
                                     <label for="keywords">Keywords:</label>
                                     <input type="text" class="form-control" id="keywords" name="keywords"
-                                        value="<?php echo $row['keywords']; ?>"
+                                        value="<?php
+if (empty($row['keywords'])) {
+    echo "";
+} else {
+    echo $row['keywords'];
+}
+?>"
                                         placeholder="Enter keywords, e.g., keyword1, keyword2, keyword3"
                                         data-toggle="tooltip" data-placement="top"
                                         title="Enter specific keywords related to your content. These help search engines understand the focus of your page. Separate keywords with commas. Example: Web Development, Responsive Design, JavaScript">
@@ -185,7 +290,13 @@ if(isset($row['user_id']) && $row['user_id'] != ''){
                                     <label for="description">Description:</label>
                                     <textarea type="text" class="form-control" id="description" name="description"
                                         data-toggle="tooltip" data-placement="top"
-                                        title="Enter a brief and informative description of your content. This helps users and search engines understand the purpose of your page. Example: Showcase of my web development projects and skills."><?php echo $row['description']; ?> </textarea>
+                                        title="Enter a brief and informative description of your content. This helps users and search engines understand the purpose of your page. Example: Showcase of my web development projects and skills."><?php
+if (empty($row['description'])) {
+    echo "";
+} else {
+    echo $row['description'];
+}
+?> </textarea>
                                 </div>
                             </div>
                             <div class="col-sm-12">
