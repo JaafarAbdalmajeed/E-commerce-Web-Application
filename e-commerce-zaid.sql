@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2023 at 12:29 PM
+-- Generation Time: Dec 17, 2023 at 01:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -167,13 +167,13 @@ INSERT INTO `products` (`id`, `name`, `image`, `stock_quantity`, `price`, `price
 (52, 'Product 52', 'img\\product\\p4.jpg', 74, 76.05, 60.84, 1, 'Description for Product 52', 4, 9, '2023-12-17 11:01:44'),
 (53, 'Product 53', 'img\\product\\p5.jpg', 20, 74.38, 59.5, 0, 'Description for Product 53', 1, 2, '2023-12-17 11:01:44'),
 (54, 'Product 54', 'img\\product\\p6.jpg', 29, 83.57, 66.86, 1, 'Description for Product 54', 2, 3, '2023-12-17 11:01:44'),
-(55, 'Product 55', 'imgproductp7.jpg', 35, 29.76, 23.81, 0, 'Description for Product 55', 3, 1, '2022-12-31 21:00:00'),
-(56, 'Product 56', 'imgproductp8.jpg', 65, 73.01, 58.41, 0, 'Description for Product 56', 4, 4, '2022-12-31 21:00:00'),
+(55, 'Product 55', 'img\\product\\p7.jpg', 35, 29.76, 23.81, 0, 'Description for Product 55', 3, 1, '2023-12-17 12:09:40'),
+(56, 'Product 56', 'img\\product\\p8.jpg', 65, 73.01, 58.41, 0, 'Description for Product 56', 4, 4, '2023-12-17 12:10:01'),
 (57, 'Product 57', 'img\\product\\p1.jpg', 54, 53.25, 42.6, 1, 'Description for Product 57', 1, 1, '2022-12-31 21:00:00'),
 (58, 'Product 58', 'img\\product\\p2.jpg', 59, 34.83, 27.86, 0, 'Description for Product 58', 2, 5, '2022-12-31 21:00:00'),
 (59, 'Product 59', 'img\\product\\p3.jpg', 91, 23.84, 19.07, 1, 'Description for Product 59', 3, 4, '2022-12-31 21:00:00'),
 (60, 'Product 60', 'img\\product\\p4.jpg', 36, 56.75, 45.4, 0, 'Description for Product 60', 4, 2, '2022-12-31 21:00:00'),
-(61, 'Product 61', 'img\\productp5.jpg', 99, 40.16, 32.13, 1, 'Description for Product 61', 1, 2, '2022-12-31 21:00:00'),
+(61, 'Product 61', 'img\\product\\p5.jpg', 99, 40.16, 32.13, 1, 'Description for Product 61', 1, 2, '2023-12-17 12:10:20'),
 (62, 'Product 62', 'img\\product\\p6.jpg', 27, 42.96, 34.37, 1, 'Description for Product 62', 2, 9, '2022-12-31 21:00:00'),
 (63, 'Product 63', 'img\\product\\p7.jpg', 48, 11.46, 9.17, 1, 'Description for Product 63', 3, 3, '2022-12-31 21:00:00');
 
