@@ -431,12 +431,12 @@ function generateSelect($default = 12) {
 				
 				<section class="lattest-product-area pb-40 category-list">
 					<div class="row">
-					<?php foreach ($products as $product) { ?>
+					<?php foreach ($products as $product) {?>
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
-								<img class="img-fluid" src= '<?php echo $product['image']; ?>' alt="">
+								<a href = "single-product.php?productId=<?php echo $product['id']?>"><img class="img-fluid" src= '<?php if(file_exists($product['image'])) {echo $product['image'];} else {echo "img/placeholder.png";} ?>' alt="" style="cursor:pointer;"></a>
 								<div class="product-details">
-									<h6><?php echo $product['name']; ?></h6>
+									<a href = "single-product.php?productId=<?php echo $product['id']?>"><h6 style="cursor:pointer;"><?php echo $product['name']; ?></h6></a>
 									<div class="price">
 										<?php if ($product['is_on_sale'] == 1) { ?>
 											<h6>$<?php echo $product['price_after_sale']; ?></h6>
@@ -458,9 +458,7 @@ function generateSelect($default = 12) {
 								</div>
 							</div>
 						</div>
-					<?php } ?>
-
-					
+					<?php } ?>	
 					</div>
 				</section>
 			</div>

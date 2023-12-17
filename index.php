@@ -142,12 +142,22 @@
 	<section class="category-area">
 		<div class="container">
 			<div class="row justify-content-center">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="">
+							<h1 onclick="displayCategory(0)" style="cursor:pointer;">Shop by Category</h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+								dolore
+								magna aliqua.</p><br>
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-8 col-md-12">
 					<div class="row">
 						<div class="col-lg-8 col-md-8">
 							<div class="single-deal">
-								<div class="overlay"></div>
-								<img class="img-fluid w-100" src="img/category/c1.jpg" alt="">
+								<div class="overlay" onclick="displayCategory(1)" style="cursor:pointer;"></div>
+								<img class="img-fluid w-100" src="img/category/c1.jpg" alt="" >
 								<a href="img/category/c1.jpg" class="img-pop-up" target="_blank">
 									<div class="deal-details">
 										<h6 class="deal-title">Sneaker for Sports</h6>
@@ -157,8 +167,8 @@
 						</div>
 						<div class="col-lg-4 col-md-4">
 							<div class="single-deal">
-								<div class="overlay"></div>
-								<img class="img-fluid w-100" src="img/category/c2.jpg" alt="">
+								<div class="overlay" onclick="displayCategory(2)" style="cursor:pointer;"></div>
+								<img class="img-fluid w-100" src="img/category/c2.jpg" alt="" >
 								<a href="img/category/c2.jpg" class="img-pop-up" target="_blank">
 									<div class="deal-details">
 										<h6 class="deal-title">Sneaker for Sports</h6>
@@ -168,7 +178,7 @@
 						</div>
 						<div class="col-lg-4 col-md-4">
 							<div class="single-deal">
-								<div class="overlay"></div>
+								<div class="overlay" onclick="displayCategory(3)" style="cursor:pointer;"></div>
 								<img class="img-fluid w-100" src="img/category/c3.jpg" alt="">
 								<a href="img/category/c3.jpg" class="img-pop-up" target="_blank">
 									<div class="deal-details">
@@ -179,8 +189,8 @@
 						</div>
 						<div class="col-lg-8 col-md-8">
 							<div class="single-deal">
-								<div class="overlay"></div>
-								<img class="img-fluid w-100" src="img/category/c4.jpg" alt="">
+								<div class="overlay" onclick="displayCategory(4)" style="cursor:pointer;"></div>
+								<img class="img-fluid w-100" src="img/category/c4.jpg" alt="" >
 								<a href="img/category/c4.jpg" class="img-pop-up" target="_blank">
 									<div class="deal-details">
 										<h6 class="deal-title">Sneaker for Sports</h6>
@@ -192,7 +202,7 @@
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="single-deal">
-						<div class="overlay"></div>
+						<div class="overlay" onclick="displayCategory(5)" style="cursor:pointer;"></div>
 						<img class="img-fluid w-100" src="img/category/c5.jpg" alt="">
 						<a href="img/category/c5.jpg" class="img-pop-up" target="_blank">
 							<div class="deal-details">
@@ -203,6 +213,11 @@
 				</div>
 			</div>
 		</div>
+		<script> 
+			function displayCategory(categoryId, showCount = 12, page = 1) {
+				window.location.href = 'category.php?id=' + categoryId + '&showcount=' + showCount + '&page=' + page;
+			}
+		</script>
 	</section>
 	<!-- End category Area -->
 
