@@ -273,7 +273,7 @@
 					<?php for($i = 0; $i < count($productsArray); $i++) {?>
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="admin-panel/img/<?php echo $productsArray[$i]['image']?>" alt="">
+							<img class="img-fluid" src="<?php echo $productsArray[$i]['image']?>" alt="">
 							<div class="product-details">
 								<h6  href=""><a class="hover-text text-warning-hover" href="single-product.php?productId=<?php echo $productsArray[$i]['id']?>"><?php echo $productsArray[$i]['name']?></a></h6>
 								<div class="price">
