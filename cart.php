@@ -1,3 +1,4 @@
+<?php include('includes/connect.php'); ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -65,23 +66,29 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                            $row=$database->get_SpecificList('cart','customer_id',$_SESSION['customer_id']);
+                            foreach($row as $value){
+                                // echo $value->productId;
+                                $sub_total+=$database->getColumn('products','price',$value->productId) * $value->qty; 
+                            ?>
                             <tr>
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
+                                            <img src="<?php echo 'admin-panel/img/'.$database->getColumn('products','image',$value->productId) ?>" alt="">
                                         </div>
                                         <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
+                                            <p><?php echo $database->getColumn('products','name',$value->productId) ?></p>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>$360.00</h5>
+                                    <h5><?php echo $database->getColumn('products','price',$value->productId) ?></h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                        <input type="text" name="qty" id="sst" maxlength="12"  title="Quantity:" value="<?php echo $value->qty; ?>"
                                             class="input-text qty">
                                         <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                                             class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
@@ -90,68 +97,14 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>$720.00</h5>
+                                    <h5><?php echo $database->getColumn('products','price',$value->productId) * $value->qty; ?></h5>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                            class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="img/cart.jpg" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$360.00</h5>
-                                </td>
-                                <td>
-                                    <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                            class="input-text qty">
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>$720.00</h5>
-                                </td>
-                            </tr>
+                            <?php } ?>
+                           
                             <tr class="bottom_button">
                                 <td>
-                                    <a class="gray_btn" href="#">Update Cart</a>
+                                    <!-- <a class="gray_btn" href="#">Update Cart</a> -->
                                 </td>
                                 <td>
 
@@ -160,11 +113,11 @@
 
                                 </td>
                                 <td>
-                                    <div class="cupon_text d-flex align-items-center">
+                                    <!-- <div class="cupon_text d-flex align-items-center">
                                         <input type="text" placeholder="Coupon Code">
                                         <a class="primary-btn" href="#">Apply</a>
                                         <a class="gray_btn" href="#">Close Coupon</a>
-                                    </div>
+                                    </div> -->
                                 </td>
                             </tr>
                             <tr>
@@ -178,7 +131,7 @@
                                     <h5>Subtotal</h5>
                                 </td>
                                 <td>
-                                    <h5>$2160.00</h5>
+                                    <h5><?php echo $sub_total;?></h5>
                                 </td>
                             </tr>
                             <tr class="shipping_area">
@@ -194,12 +147,12 @@
                                 <td>
                                     <div class="shipping_box">
                                         <ul class="list">
-                                            <li><a href="#">Flat Rate: $5.00</a></li>
+                                            <!-- <li><a href="#">Flat Rate: $5.00</a></li>
                                             <li><a href="#">Free Shipping</a></li>
-                                            <li><a href="#">Flat Rate: $10.00</a></li>
-                                            <li class="active"><a href="#">Local Delivery: $2.00</a></li>
+                                            <li><a href="#">Flat Rate: $10.00</a></li> -->
+                                            <li class="active"><a href="#">Local Delivery:  2.00</a></li>
                                         </ul>
-                                        <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
+                                        <!-- <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
                                         <select class="shipping_select">
                                             <option value="1">Bangladesh</option>
                                             <option value="2">India</option>
@@ -211,7 +164,7 @@
                                             <option value="4">Select a State</option>
                                         </select>
                                         <input type="text" placeholder="Postcode/Zipcode">
-                                        <a class="gray_btn" href="#">Update Details</a>
+                                        <a class="gray_btn" href="#">Update Details</a> -->
                                     </div>
                                 </td>
                             </tr>
@@ -227,8 +180,8 @@
                                 </td>
                                 <td>
                                     <div class="checkout_btn_inner d-flex align-items-center">
-                                        <a class="gray_btn" href="#">Continue Shopping</a>
-                                        <a class="primary-btn" href="#">Proceed to checkout</a>
+                                        <a class="gray_btn" href="index.php">Continue Shopping</a>
+                                        <a class="primary-btn" href="checkout.php">Proceed to checkout</a>
                                     </div>
                                 </td>
                             </tr>

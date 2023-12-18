@@ -32,7 +32,9 @@
                     $i=1;
                     $row=$database->getTableList('products');
                     foreach($row as $value){
+                        // echo $value->image;
                     ?>
+
                         <tr>
                             <td><?php echo $i++; ?></td>
                             <td><a href="<?php echo "img/".$value->image; ?>" target="_blank"><img src="<?php echo "img/".$value->image; ?>" width="50" height="50" alt="product image"></a></td>

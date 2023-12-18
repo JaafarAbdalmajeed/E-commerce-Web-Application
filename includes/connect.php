@@ -33,6 +33,21 @@ class Database
 
         return $row['col'];
     }
+    public function getCol($tbl, $col, $colWhere, $where) {
+        try {
+            $query = "SELECT $col as col FROM $tbl WHERE $colWhere = :where";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':where', $where);
+            $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return isset($row['col']) ? $row['col'] : '';
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return '';
+        }
+    }
 
     public function getTableList($tbl)
     {

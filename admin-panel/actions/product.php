@@ -18,11 +18,12 @@ $id = isset($_POST['id']) ? $_POST['id'] : null;
 $file_org_name = $_FILES["image"]["name"];
 $file_tmp_name = $_FILES["image"]["tmp_name"];
 
-if ($_FILES["image"]["size"] != 0) {
-    $image = $database->upload_img($file_org_name, $file_tmp_name);
-}
+
 
 if (isset($_POST['add'])) {
+    if ($_FILES["image"]["size"] != 0) {
+        $image = $database->upload_img($file_org_name, $file_tmp_name);
+    }
     $insertProduct = "INSERT INTO products (`name`, `user_id`, `image`, `stock_quantity`, `price`, `price_after_sale`, `description`, `is_on_sale`, `category_id`) 
                        VALUES (:name, :user_id, :image, :stock_quantity, :price, :price_after_sale, :description, :is_on_sale, :category_id)";
     try {

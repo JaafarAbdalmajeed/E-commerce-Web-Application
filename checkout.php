@@ -1,4 +1,4 @@
-
+<?php include('includes/connect.php'); ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -33,7 +33,7 @@
 
 <body>
 
-<?php include 'header.php'?>
+    <?php include 'header.php'?>
 
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
@@ -54,27 +54,32 @@
     <!--================Checkout Area =================-->
     <section class="checkout_area section_gap">
         <div class="container">
+            <?php 
+            // echo $_SESSION['customer_id'];
+            if(!isset($_SESSION['customer_id'])){
+            ?>
             <div class="returning_customer">
                 <div class="check_title">
                     <h2>Returning Customer? <a href="#">Click here to login</a></h2>
                 </div>
                 <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new
                     customer, please proceed to the Billing & Shipping section.</p>
-          
-               
 
-                    <form class="row contact_form" action="checkoutlog.php" method="post" novalidate="novalidate" >
+
+
+                <form class="row contact_form" action="checkoutlog.php" method="post" novalidate="novalidate">
                     <div class="col-md-6 form-group p_star">
                         <input type="text" class="form-control" id="name" name="email" placeholder="Email">
                         <!--<span class="placeholder" data-placeholder=" Email"></span>-->
                     </div>
                     <div class="col-md-6 form-group p_star">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                       <!-- <span class="placeholder"  data-placeholder="Password"></span>-->
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Password">
+                        <!-- <span class="placeholder"  data-placeholder="Password"></span>-->
                     </div>
                     <div class="col-md-12 form-group">
                         <?php if(isset($_GET['error'])){?>
-                            <p> <?php echo $_GET['error'];?></p>
+                        <p> <?php echo $_GET['error'];?></p>
                         <?php }
                             ?>
                         <button type="submit" value="submit" class="primary-btn" name="submit">login</button>
@@ -86,48 +91,61 @@
                     </div>
                 </form>
             </div>
-            <div class="cupon_area">
+            <?php } ?>
+            <!-- <div class="cupon_area">
                 <div class="check_title">
                     <h2>Have a coupon? <a href="#">Click here to enter your code</a></h2>
                 </div>
                 <input type="text" placeholder="Enter coupon code">
                 <a class="tp_btn" href="#">Apply Coupon</a>
-            </div>
+            </div> -->
             <div class="billing_details">
                 <div class="row">
                     <div class="col-lg-8">
                         <h3>Billing Details</h3>
                         <form class="row contact_form" action="checkoutsign.php" method="post" novalidate="novalidate">
-                            <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="first" name="name" placeholder="First name">
-                               <!-- <span class="placeholder" data-placeholder="First name"></span>-->
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="first" name="name" placeholder="Full name"
+                                    value="<?php if(isset($_SESSION['customer_id'])) { echo $database->getColumn('customers','name',$_SESSION['customer_id']);}else{echo "";}?>">
+                                <!-- <span class="placeholder" data-placeholder="First name"></span>-->
                             </div>
-                            <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="last" name="lname" placeholder="Last name">
-                              <!--  <span class="placeholder" data-placeholder="Last name"></span>-->
-                            </div>
+                            <!-- <div class="col-md-6 form-group p_star">
+                                <input type="text" class="form-control" id="last" name="lname" placeholder="Last name"> -->
+                            <!--  <span class="placeholder" data-placeholder="Last name"></span>-->
+                            <!-- </div> -->
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="company" name="email" placeholder="Email Address">
+                                <input type="text" class="form-control" id="company" name="email"
+                                    placeholder="Email Address"
+                                    value="<?php if(isset($_SESSION['customer_id'])) { echo $database->getColumn('customers','email',$_SESSION['customer_id']);}else{echo "";}?>">
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="number" name="phone" placeholder="Phone number">
-                               <!-- <span class="placeholder" data-placeholder="Phone number"></span>-->
+                                <input type="text" class="form-control" id="number" name="phone"
+                                    placeholder="Phone number"
+                                    value="<?php if(isset($_SESSION['customer_id'])) { echo $database->getColumn('customers','phone',$_SESSION['customer_id']);}else{echo "";}?>">
+                                <!-- <span class="placeholder" data-placeholder="Phone number"></span>-->
                             </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="add1" name="address"
+                                    value="<?php if(isset($_SESSION['customer_id'])) { echo $database->getColumn('customers','address',$_SESSION['customer_id']);}else{echo "";}?>">
+                                <span class="placeholder" data-placeholder="Address line 01"></span>
+                            </div>
+                            <?php 
+            // echo $_SESSION['customer_id'];
+            if(!isset($_SESSION['customer_id'])){
+            ?>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="email" name="password" placeholder="Password">
+                                <input type="text" class="form-control" id="email" name="password"
+                                    placeholder="Password">
                                 <!--<span class="placeholder" data-placeholder="Password"></span>-->
                             </div>
-                           <!-- <div class="col-md-12 form-group p_star">
+                            <!-- <div class="col-md-12 form-group p_star">
                                 <select class="country_select">
                                     <option value="1">Country</option>
                                     <option value="2">Country</option>
                                     <option value="4">Country</option>
                                 </select>
                             </div>
-                            <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="add1" name="add1">
-                                <span class="placeholder" data-placeholder="Address line 01"></span>
-                            </div>
+                           
                             <div class="col-md-12 form-group p_star">
                                 <input type="text" class="form-control" id="add2" name="add2">
                                 <span class="placeholder" data-placeholder="Address line 02"></span>
@@ -136,53 +154,81 @@
                                 <input type="text" class="form-control" id="city" name="city">
                                 <span class="placeholder" data-placeholder="Town/City"></span>
                             </div>-->
-                            
-                            <div class="col-md-12 form-group p_star">
+
+                            <!-- <div class="col-md-12 form-group p_star">
                                 <select class="country_select"name="address" >
                                     <option value="Amman" >Amman</option>
-                                    <option value="Aqapa" >Aqapa</option>
+                                    <option value="Aqaba" >Aqaba</option>
                                     <option value="Ajlon" >Jordan</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="zip" name="confirm_password" placeholder="conferm password">
+                                <input type="text" class="form-control" id="zip" name="confirm_password"
+                                    placeholder="conferm password">
                             </div>
+                            <?php } ?>
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
-                                <?php if(isset($_GET['error'])){?>
-                            <p> <?php echo $_GET['error'];?></p>
-                        <?php }
+                                    <?php if(isset($_GET['error'])){?>
+                                    <p> <?php echo $_GET['error'];?></p>
+                                    <?php }
                             ?>
-                                    <button type="submit" value="submit" class="primary-btn" name="create" >create an account</button>
-                                   
-                         </div>
+                                    <?php 
+            // echo $_SESSION['customer_id'];
+            if(!isset($_SESSION['customer_id'])){
+            ?>
+                                    <button type="submit" value="submit" class="primary-btn" name="create">create an
+                                        account</button>
+                                    <?php }  else{ ?>
+                                    <button type="submit" value="submit" class="primary-btn" name="order">Create an
+                                        Order</button>
+                                    <?php } ?>
+
+
+                                </div>
                             </div>
-                            <div class="col-md-12 form-group">
+                            <!-- <div class="col-md-12 form-group">
                                 <div class="creat_account">
                                     <h3>Shipping Details</h3>
                                     <input type="checkbox" id="f-option3" name="selector">
                                     <label for="f-option3">Ship to a different address?</label>
                                 </div>
                                 <textarea class="form-control" name="message" id="message" rows="1" placeholder="Order Notes"></textarea>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
-                    <!--
+
                     <div class="col-lg-4">
                         <div class="order_box">
                             <h2>Your Order</h2>
                             <ul class="list">
                                 <li><a href="#">Product <span>Total</span></a></li>
-                                <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+
+                                <?php 
+                                $sub_total=0;
+                                $rowProduct = $database->get_SpecificList('cart', 'customer_id', $_SESSION['customer_id']);
+                                foreach ($rowProduct as $value) {
+                                    $productId = $value->productId;
+                                    $productName = $database->getColumn('products', 'name', $productId);
+                                    $productQty = $value->qty;
+                                    $productPrice = $database->getColumn('products', 'price', $productId);
+                                    $sub_total+=$database->getColumn('products','price',$value->productId) * $value->qty; 
+
+                                    // Perform any calculations or display logic here
+                                ?>
+                                <li><a><?php echo $productName; ?> <span class="middle">x
+                                            <?php echo $productQty; ?></span> <span
+                                            class="last"><?php echo $productPrice; ?></span></a></li>
+                                <?php
+                                }
+                                ?>
                             </ul>
                             <ul class="list list_2">
-                                <li><a href="#">Subtotal <span>$2160.00</span></a></li>
-                                <li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li>
-                                <li><a href="#">Total <span>$2210.00</span></a></li>
+                                <li><a href="#">Subtotal <span><?php echo $sub_total ?></span></a></li>
+                                <li><a href="#">Shipping <span>2.00</span></a></li>
+                                <li><a href="#">Total <span><?php echo $sub_total+2 ?></span></a></li>
                             </ul>
-                            <div class="payment_item">
+                            <!-- <div class="payment_item">
                                 <div class="radion_btn">
                                     <input type="radio" id="f-option5" name="selector">
                                     <label for="f-option5">Check payments</label>
@@ -206,9 +252,9 @@
                                 <label for="f-option4">I’ve read and accept the </label>
                                 <a href="#">terms & conditions*</a>
                             </div>
-                            <a class="primary-btn" href="#">Proceed to Paypal</a>
+                            <a class="primary-btn" href="#">Proceed to Paypal</a> -->
                         </div>
-                    </div>-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -236,13 +282,15 @@
                         <p>Stay update with our latest</p>
                         <div class="" id="mc_embed_signup">
 
-                            <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                            <form target="_blank" novalidate="true"
+                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
                                 method="get" class="form-inline">
 
                                 <div class="d-flex flex-row">
 
-                                    <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Enter Email '" required="" type="email">
+                                    <input class="form-control" name="EMAIL" placeholder="Enter Email"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
+                                        required="" type="email">
 
 
                                     <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right"
@@ -290,10 +338,14 @@
                 </div>
             </div>
             <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-                <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</p>
+                <p class="footer-text m-0">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
+                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
             </div>
         </div>
     </footer>
@@ -301,8 +353,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
     <script src="js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
+    </script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/jquery.ajaxchimp.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
